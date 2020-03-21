@@ -18,11 +18,12 @@ class App {
             return res.status(HttpStatusCode.OK).send({ message: 'API OK' });
         });
         router.get('/webhook', (req, res) => {
+            const { challenge } = req.params;
             res.set({
                 'Content-Type': 'text/plain',
                 'X-Content-Type-Options': 'nosniff',
             });
-            return res.status(HttpStatusCode.OK).send();
+            return res.status(HttpStatusCode.OK).send(challenge);
         });
         router.post('/', (req, res) => {
             // Receiving notifications Requestからアカウントを取得する
