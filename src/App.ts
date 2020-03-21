@@ -18,7 +18,7 @@ class App {
             return res.status(HttpStatusCode.OK).send({ message: 'API OK' });
         });
         router.get('/', (req, res) => {
-            const { challenge } = req.params;
+            const { challenge } = req.query;
             res.set({
                 'Content-Type': 'text/plain',
                 'X-Content-Type-Options': 'nosniff',
