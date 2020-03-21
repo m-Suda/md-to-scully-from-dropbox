@@ -17,7 +17,7 @@ class App {
         router.get('/hearthcheck', (req, res) => {
             return res.status(HttpStatusCode.OK).send({ message: 'API OK' });
         });
-        router.get('/webhook', (req, res) => {
+        router.get('/', (req, res) => {
             const { challenge } = req.params;
             res.set({
                 'Content-Type': 'text/plain',
