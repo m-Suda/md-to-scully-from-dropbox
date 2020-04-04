@@ -1,6 +1,10 @@
 import express from 'express';
 import * as bodyParser from 'body-parser';
+import * as nodeFetch from 'node-fetch';
 import { HttpStatusCode } from './constants/HttpStatusCode';
+import { pushMarkdown } from './use-case/PushMarkdown';
+
+(global as any).fetch = nodeFetch;
 
 class App {
     public app: express.Application;
@@ -25,23 +29,17 @@ class App {
             });
             return res.status(HttpStatusCode.OK).send(challenge);
         });
-        router.post('/', (req, res) => {
-            // Receiving notifications Requestからアカウントを取得する
-            const { body } = req;
-            console.log(`Request body: ${JSON.stringify(body)}`);
-
-            // 次に /files/list_folder/continue を呼び出して変更があったファイルを取得する
-
-            // ファイル情報を取得したら files/download を呼び出してファイル内容を取得する
-
-            // そのファイルをサーバーのどこかに保存する
-
-            // 最後にシェルスクリプトを実行する
-            //   シェルスクリプトの中身
-            //     angular-scully-appのblogディレクトリにコピーする
-            //     git addする
-            //     git commitする
-            //     git pushする
+        router.post('/', async (req, res) => {
+            try {
+                console.log('Start Push Markdown');
+                await pushMarkdown();
+                return res.status(200).send('Markdownの追加に成功');
+            } catch (e) {
+                console.error(e);
+                return res.status(500).send('Markdownの追加に失敗');
+            } finally {
+                console.log('End Push Markdown');
+            }
         });
 
         this.app.use('/', router);
