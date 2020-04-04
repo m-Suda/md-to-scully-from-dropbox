@@ -57,5 +57,9 @@ module.exports = {
         'yoda': 'off',
         // importにtsファイルも含める
         'import/extensions': 'off',
+        // Loop内のawaitを許可する
+        'no-await-in-loop': 'off',
+        // CamelCaseを許可する
+        '@typescript-eslint/camelcase': 'off',
     },
 };
