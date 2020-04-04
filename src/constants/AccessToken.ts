@@ -1,1 +1,1 @@
-export const AccessToken = '';
+export const AccessToken = 'none';
