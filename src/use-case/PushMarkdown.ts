@@ -16,9 +16,9 @@ export async function pushMarkdown() {
             .execSync(`cp ${savePath} ~/angular-scully-blog/blog/`)
             .toString();
         console.log(cpBlogResult);
-        const cdResult = await childProcess.execSync(`cd ~/angular-scully-blog`).toString();
-        console.log(cdResult);
-        const gitPushBlogResult = await childProcess.execSync(`sh git-push.sh`).toString();
+        const gitPushBlogResult = await childProcess
+            .execSync(`sh ~/angular-scully-blog/git-push.sh`)
+            .toString();
         console.log(gitPushBlogResult);
     } catch (e) {
         console.error(e);
