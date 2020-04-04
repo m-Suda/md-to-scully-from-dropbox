@@ -18,7 +18,7 @@ export class CommandExec {
     public gitCommit() {
         console.log('ブログアプリのリポジトリでgit commit');
         childProcess.execSync(
-            `git --work-tree=${this._targetRepository}/ --git-dir=${this._targetRepository}/.git commit -b "Create new article with Type and Push from API Server"`
+            `git --work-tree=${this._targetRepository}/ --git-dir=${this._targetRepository}/.git commit -m "Create new article with Type and Push from API Server"`
         );
     }
 
