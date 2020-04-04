@@ -9,7 +9,7 @@ export class CommandExec {
 
     public gitAdd() {
         childProcess.execSync(
-            `git --work-tree= --git-dir=${this._targetRepository}/.git add ${this._targetRepository}/blog/.`
+            `git --work-tree=${this._targetRepository} --git-dir=${this._targetRepository}/.git add ${this._targetRepository}/blog/.`
         );
     }
 
